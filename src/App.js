@@ -6,11 +6,12 @@ function App() {
   const counter = useSelector(({ counter }) => counter);
   const dispatch = useDispatch();
   const inputNum = createRef();
-
+//todo замінити ці 4 метода одним
   const clickIncOne = () => { dispatch({ type: 'INC_COUNTER_ONE' }) }
   const clickDecOne = () => { dispatch({ type: 'DEC_COUNTER_ONE' }) }
   const clickIncHundred = () => { dispatch({ type: 'INC_COUNTER_HUNDRED' }) }
   const clickDecHundred = () => { dispatch({ type: 'DEC_COUNTER_HUNDRED' }) }
+
   const clickReset = () => { dispatch({ type: 'RESET_COUNTER' }) }
   const clickSubmit = () => {
     const res = inputNum.current.value.replace(/[^0-9]/g, '');
@@ -38,6 +39,7 @@ function App() {
           <button className='w100 margin10' onClick={clickReset}>Reset</button>
         </div>
         <label>Число:</label>
+        {/*//todo зробити контрольований інпут*/}
         <input type='text' ref={inputNum}></input>
         <button onClick={clickSubmit}>Submit</button>
 
