@@ -1,20 +1,20 @@
-import React, { createRef } from 'react';
+import React, { createRef, useState } from 'react';
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
   const counter = useSelector(({ counter }) => counter);
   const dispatch = useDispatch();
-  const inputNum = createRef();
+  const [inputValue, inputChange] = useState('');
 
   const clickTodo = (value) => {dispatch({type: value})};
   const clickReset = () => { dispatch({ type: 'RESET_COUNTER' }) }
   const clickSubmit = () => {
-    const res = inputNum.current.value.replace(/[^0-9]/g, '');
+    const res = inputValue.replace(/[^0-9]/g, '');
     if (res) {      
       dispatch({ type: 'SUBMIT_COUNTER', payload: +res });  
     }
-    return inputNum.current.value = null;
+    return inputChange('');
   }
 
   return (
@@ -35,7 +35,7 @@ function App() {
           <button className='w100 margin10' onClick={clickReset}>Reset</button>
         </div>
         <label>Число:</label>
-        <input type='text' ref={inputNum}></input>
+        <input type='text' onChange={({target: {value}}) => inputChange(value)} value={inputValue}></input>
         <button onClick={clickSubmit}>Submit</button>
 
       </section>
