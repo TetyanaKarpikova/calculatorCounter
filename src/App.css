@@ -23,8 +23,9 @@ p{
 .flex-content{
   display: flex;    
   justify-content: space-around; 
-  
+  flex-wrap: wrap;
 }
+
 
 .w100 {
   width: 100px;
